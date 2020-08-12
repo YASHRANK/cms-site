@@ -1,0 +1,97 @@
+{% extends 'accounts/base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row m-4">
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Customer:</h5>
+                    <p class="card-text display-4">
+                        {{customer.name}}
+                    </p>
+                    <hr>
+                    <a href="#" class="btn btn-outline-info btn-block my-3">Update Customer</a>
+                    <a href="{% url 'create_order' customer.id   %}" class="btn btn-outline-primary btn-block">Create
+                        Orders</a>
+                    <a href="#" class="btn btn-outline-danger btn-block my-3">Delete Customer</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Information</h5>
+                    <hr>
+                    <p> <strong>Email:</strong> {{customer.email}}</p>
+                    <p> <strong>Phone:</strong> {{customer.phone}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Orders</h5>
+                    <hr>
+                    <h3 class="text-center ">{{order_count}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row m-4">
+        <div class="col">
+            <nav class="navbar navbar-light " style="background-color: rgb(218, 218, 218);">
+                <form class="form-inline" method="GET">
+                    {{order_filter.form}}
+                    <button class="btn btn-primary my-2 mx-2" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-4">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date Ordered</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Upadate</th>
+                        <th scope="col">Remove</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders%}
+                    <tr>
+                        <td>{{order.product}}</td>
+                        <td>{{order.product.category}}</td>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.notes}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">update</a>
+                        </td>
+                        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

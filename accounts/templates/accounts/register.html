@@ -1,0 +1,81 @@
+{% extends 'accounts/base.html'%}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-6 mx-auto text-center">
+        <div class="header-title">
+            <h1 class="wv-heading--title">
+                Register
+            </h1>
+            <h2 class="wv-heading--subtitle">
+                — it’s free!
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="myform form ">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{form.username}}
+                    </div>
+                    <div class="form-group">
+                        {{form.email}}
+                    </div>
+                    <div class="form-group">
+                        {{form.password1}}
+                    </div>
+                    <div class="text-center ">
+                        {{form.password2}}
+                    </div><br>
+                    <div class="text-center ">
+                        <button type="submit" class="btn btn-block send-button" style="background-color: rgb(3, 156, 156);
+                                   color:white;">Create Your
+                            Account</button>
+                    </div>
+                    <hr>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-block" href="#" style="background-color:rgb(252, 55, 55);
+                        color:white;">
+                    <i class="fa fa-google"></i> Sign up with Google
+                </a>
+                <p class="small mt-3"> Already have an account ? <a href="{% url 'login' %}">Login here</a></p>
+
+            </div>
+            <p class="small mt-3">By signing up, you are indicating that you have read and agree to the <a href="#"
+                    class="ps-hero__content__link">Terms of Use</a> and <a href="#">Privacy Policy</a>.
+            </p>
+            </form>
+        </div>
+    </div>
+    {% if form.errors %}
+    {% for field in form %}
+    {% for error in field.errors %}
+    <div class="alert alert-warning">
+        <strong>{{ error|escape }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endfor %}
+
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">
+        <strong>{{ error|escape }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock %}

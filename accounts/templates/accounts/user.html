@@ -1,0 +1,38 @@
+{% extends 'accounts/base.html'%}
+
+{% block content %}
+{% include 'accounts/status.html' %}
+
+<h1>User Profile</h1>
+
+<div class="container">
+    <div class="row m-4">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date Ordered</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Notes</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders%}
+                    <tr>
+                        <td>{{order.product}}</td>
+                        <td>{{order.product.category}}</td>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.status}}</td>
+                        <td>{{order.notes}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

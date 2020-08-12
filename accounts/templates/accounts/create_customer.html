@@ -1,0 +1,20 @@
+{% extends 'accounts/base.html'%}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container mx-auto my-5">
+
+    <div class="card" style="width: 40rem;">
+        <div class="card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form}}
+                <hr>
+                <input class="btn btn-outline-success" type="submit" value="submit">
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}

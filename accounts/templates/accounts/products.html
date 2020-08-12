@@ -1,0 +1,34 @@
+{% extends 'accounts/base.html'%}
+
+{% block content %}
+<div class="container  my-4">
+    <div class="p-3 mb-2 bg-light text-dark">
+        <h3>Products</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products%}
+
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>
+                    <strong>$</strong>{{product.price}}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+
+</div>
+
+{% endblock %}

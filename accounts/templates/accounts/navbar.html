@@ -1,0 +1,38 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="{% static '/images/logo.svg' %}" width="50" height="50" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <a class="nav-item nav-link active" href="{% url 'home'%}">Dashboard</a>
+            <a class="nav-item nav-link" href="{% url 'products'%}">Products</a>
+            {% else %}
+            <a class="nav-item nav-link" href="{% url 'account_settings' %}">settings</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <span>
+        <h4 style="color: white;" class="mx-3">Hello, {{request.user}}</h4>
+    </span>
+    <span>
+        <a class="btn btn-outline-info btn-sm mx-3" href="{% url 'logout'%}">Logout</a>
+    </span>
+    {% else %}
+    <span>
+        <a class="btn btn-outline-light btn-sm mx-3" href="{% url 'login'%}">login</a>
+    </span>
+
+    {% endif %}
+
+</nav>

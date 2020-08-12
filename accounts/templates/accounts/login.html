@@ -1,0 +1,56 @@
+{% extends 'accounts/base.html'%}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto text-center">
+            <div class="header-title">
+                <h1 class="wv-heading--title">
+                    Login
+                </h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="form ">
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <input type="text" name="username" maxlength="150" autofocus="" class="form-control"
+                            placeholder="Username">
+
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" maxlength="150" autofocus="" class="form-control"
+                            placeholder="Password">
+
+                    </div>
+                    <br>
+                    <div class="text-center ">
+                        <button type="submit" class="btn btn-block send-button" style="background-color: rgb(3, 156, 156);
+                                   color:white;">Login</button>
+                    </div>
+                    <hr>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-block" href="#" style="background-color:rgb(252, 55, 55);
+                        color:white;">
+                    <i class="fa fa-google"></i> Login with Google
+                </a>
+                <p class="small mt-3"> Don't have an account ? <a href="{% url 'register' %}">Register here</a></p>
+
+                {% include 'accounts/messages.html'%}
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

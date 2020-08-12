@@ -1,0 +1,88 @@
+{% extends 'accounts/base.html'%}
+
+{% block content %}
+
+
+
+{% include 'accounts/status.html' %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card my-1">
+                <h5 class="card-header">Customers</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <a href="{% url 'create_customer' %}" class="btn btn-primary btn-block">Add Customers</a>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Phone</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers%}
+                            <tr>
+                                <td> <a class="btn btn-sm btn-primary" href="{% url 'customers' customer.id%}">view</a>
+                                </td>
+                                <td>{{customer.name}}</td>
+                                <td>{{customer.phone}}</td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-7">
+            <div class="card my-1">
+                <h5 class="card-header">Last 5 orders</h5>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Date ordered</th>
+                                <th scope="col">Status</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders%}
+                            {% if order.status == 'Delivered'%}
+                            <tr style="background-color: rgba(0, 253, 76, 0.288);">
+                                {% endif %}
+                                <td>{{order.product}}</td>
+                                <td>{{order.date_created}}</td>
+
+                                <td>{{order.status}}</td>
+
+                                <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">update</a>
+                                </td>
+                                <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">delete</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
